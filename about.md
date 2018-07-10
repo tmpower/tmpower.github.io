@@ -4,15 +4,14 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
-
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
-
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
+Hello! I am Eziz from Turkmenistan. I am a software engineer who loves C and likes Python.<br>
+I try to write something here, at my blog. Mostly I speak in C.<br>
+I do sometimes web development for "living". Some of my projects are:
+* [Berkonum](http://berkonum.com)
 
 
-[jekyll-organization]: https://github.com/jekyll
+You can find me at social media:
+* [Twitter](https://twitter.com/ezizdurdy)
+* [LinkedIn](https://linkedin.com/in/ezizdurdy)
+
+I do my best (but not enough) to contribute to open source, like Open vSwitch, here at [Github](https://github.com/tmpower).
