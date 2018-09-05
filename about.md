@@ -8,6 +8,7 @@ Hello! I am Eziz from Turkmenistan. I am a software engineer who loves C and lik
 I try to write something here, at my blog. Mostly I speak in C.<br>
 I do sometimes web development for "living". Some of my projects are:
 * [Berkonum](http://berkonum.com)
+* [Stethoscope](https://github.com/tmpower/stethoscope)
 
 
 You can find me at social media:
