@@ -2,9 +2,9 @@
 <html lang="en"><head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.5.0 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Pointers as return values in C | Simple man’s simple blog</title>
-<meta name="generator" content="Jekyll v3.8.3" />
+<meta name="generator" content="Jekyll v4.2.2" />
 <meta property="og:title" content="Pointers as return values in C" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Hello. It has been a while. In this post I will try to write something interesting about pointers in C programming language. First, let’s have a look at this code:" />
@@ -14,8 +14,10 @@
 <meta property="og:site_name" content="Simple man’s simple blog" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2018-09-05T10:00:00+05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Pointers as return values in C" />
 <script type="application/ld+json">
-{"url":"http://localhost:4000/blog/post/2018/09/05/pointers-as-return-values-in-C.html","headline":"Pointers as return values in C","dateModified":"2018-09-05T10:00:00+05:00","datePublished":"2018-09-05T10:00:00+05:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/post/2018/09/05/pointers-as-return-values-in-C.html"},"description":"Hello. It has been a while. In this post I will try to write something interesting about pointers in C programming language. First, let’s have a look at this code:","@type":"BlogPosting","@context":"http://schema.org"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2018-09-05T10:00:00+05:00","datePublished":"2018-09-05T10:00:00+05:00","description":"Hello. It has been a while. In this post I will try to write something interesting about pointers in C programming language. First, let’s have a look at this code:","headline":"Pointers as return values in C","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/post/2018/09/05/pointers-as-return-values-in-C.html"},"url":"http://localhost:4000/blog/post/2018/09/05/pointers-as-return-values-in-C.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Simple man's simple blog" /></head>
 <body><header class="site-header" role="banner">
@@ -49,7 +51,7 @@
 In this post I will try to write something interesting about pointers in C programming language.
 First, let’s have a look at this code:</p>
 
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="cp">#include &lt;stdio.h&gt;
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
 </span>
 <span class="kt">void</span> <span class="nf">aimless_func</span><span class="p">()</span>
 <span class="p">{</span>
@@ -77,12 +79,12 @@ First, let’s have a look at this code:</p>
 <span class="p">}</span></code></pre></figure>
 
 <h2 id="what-is-the-problem">What is the problem?</h2>
-<p>The point of the above code is to show that in the function <code class="highlighter-rouge">main</code> it will print correct result, but in the <code class="highlighter-rouge">square</code> it will not.
-Because, the variable <code class="highlighter-rouge">sqr</code> in function <code class="highlighter-rouge">square</code> is stored in <strong>stack memory</strong>, and when function <code class="highlighter-rouge">square</code> ends all the memory it uses becomes available automatically.
-And when function <code class="highlighter-rouge">aimless_func</code> starts, the variable <code class="highlighter-rouge">tmp</code> will override <code class="highlighter-rouge">sqr</code>. Simple as that.</p>
+<p>The point of the above code is to show that in the function <code class="language-plaintext highlighter-rouge">main</code> it will print correct result, but in the <code class="language-plaintext highlighter-rouge">square</code> it will not.
+Because, the variable <code class="language-plaintext highlighter-rouge">sqr</code> in function <code class="language-plaintext highlighter-rouge">square</code> is stored in <strong>stack memory</strong>, and when function <code class="language-plaintext highlighter-rouge">square</code> ends all the memory it uses becomes available automatically.
+And when function <code class="language-plaintext highlighter-rouge">aimless_func</code> starts, the variable <code class="language-plaintext highlighter-rouge">tmp</code> will override <code class="language-plaintext highlighter-rouge">sqr</code>. Simple as that.</p>
 
 <h2 id="how-to-fix-it">How to fix it?</h2>
-<p>Then how to properly write functions that return pointers? Well, use dynamic memory. In the above example keep <code class="highlighter-rouge">sqr</code> in <strong>heap memory</strong>:</p>
+<p>Then how to properly write functions that return pointers? Well, use dynamic memory. In the above example keep <code class="language-plaintext highlighter-rouge">sqr</code> in <strong>heap memory</strong>:</p>
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span><span class="o">*</span> <span class="nf">square</span><span class="p">(</span><span class="kt">int</span> <span class="n">num</span><span class="p">)</span>
 <span class="p">{</span>

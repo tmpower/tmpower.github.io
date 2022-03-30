@@ -1,92 +1,92 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-03-30T11:19:01+05:00</updated><id>http://localhost:4000/</id><title type="html">Simple man’s simple blog</title><subtitle>Here, I write my thoughts about programming, life of a programmer and my journey to this moment.</subtitle><entry><title type="html">Pointers as return values in C</title><link href="http://localhost:4000/blog/post/2018/09/05/pointers-as-return-values-in-C.html" rel="alternate" type="text/html" title="Pointers as return values in C" /><published>2018-09-05T10:00:00+05:00</published><updated>2018-09-05T10:00:00+05:00</updated><id>http://localhost:4000/blog/post/2018/09/05/pointers-as-return-values-in-C</id><content type="html" xml:base="http://localhost:4000/blog/post/2018/09/05/pointers-as-return-values-in-C.html">&lt;p&gt;Hello. It has been a while.&lt;br /&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-03-30T13:17:48+05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Simple man’s simple blog</title><subtitle>Here, I write my thoughts about programming, life of a programmer and my journey to this moment.</subtitle><entry><title type="html">Pointers as return values in C</title><link href="http://localhost:4000/blog/post/2018/09/05/pointers-as-return-values-in-C.html" rel="alternate" type="text/html" title="Pointers as return values in C" /><published>2018-09-05T10:00:00+05:00</published><updated>2018-09-05T10:00:00+05:00</updated><id>http://localhost:4000/blog/post/2018/09/05/pointers-as-return-values-in-C</id><content type="html" xml:base="http://localhost:4000/blog/post/2018/09/05/pointers-as-return-values-in-C.html"><![CDATA[<p>Hello. It has been a while.<br />
 In this post I will try to write something interesting about pointers in C programming language.
-First, let’s have a look at this code:&lt;/p&gt;
+First, let’s have a look at this code:</p>
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
-&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;aimless_func&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tmp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;11&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;aimless print: %d&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tmp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span>
+<span class="kt">void</span> <span class="nf">aimless_func</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">tmp</span> <span class="o">=</span> <span class="mi">11</span><span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"aimless print: %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">tmp</span><span class="p">);</span>
+<span class="p">}</span>
 
-&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;square&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sqr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;square(): square of %d is %d&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sqr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sqr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+<span class="kt">int</span><span class="o">*</span> <span class="nf">square</span><span class="p">(</span><span class="kt">int</span> <span class="n">num</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">sqr</span> <span class="o">=</span> <span class="n">num</span> <span class="o">*</span> <span class="n">num</span><span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"square(): square of %d is %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="n">sqr</span><span class="p">);</span>
+    <span class="k">return</span> <span class="o">&amp;</span><span class="n">sqr</span><span class="p">;</span>
+<span class="p">}</span>
 
-&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ret_val&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">9</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="o">*</span><span class="n">ret_val</span><span class="p">;</span>
 
-    &lt;span class=&quot;n&quot;&gt;ret_val&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;square&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;aimless_func&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;main(): square of %d is %d&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ret_val&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    <span class="n">ret_val</span> <span class="o">=</span> <span class="n">square</span><span class="p">(</span><span class="n">num</span><span class="p">);</span>
+    <span class="n">aimless_func</span><span class="p">();</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"main(): square of %d is %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="o">*</span><span class="n">ret_val</span><span class="p">);</span>
     
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
 
-&lt;h2 id=&quot;what-is-the-problem&quot;&gt;What is the problem?&lt;/h2&gt;
-&lt;p&gt;The point of the above code is to show that in the function &lt;code class=&quot;highlighter-rouge&quot;&gt;main&lt;/code&gt; it will print correct result, but in the &lt;code class=&quot;highlighter-rouge&quot;&gt;square&lt;/code&gt; it will not.
-Because, the variable &lt;code class=&quot;highlighter-rouge&quot;&gt;sqr&lt;/code&gt; in function &lt;code class=&quot;highlighter-rouge&quot;&gt;square&lt;/code&gt; is stored in &lt;strong&gt;stack memory&lt;/strong&gt;, and when function &lt;code class=&quot;highlighter-rouge&quot;&gt;square&lt;/code&gt; ends all the memory it uses becomes available automatically.
-And when function &lt;code class=&quot;highlighter-rouge&quot;&gt;aimless_func&lt;/code&gt; starts, the variable &lt;code class=&quot;highlighter-rouge&quot;&gt;tmp&lt;/code&gt; will override &lt;code class=&quot;highlighter-rouge&quot;&gt;sqr&lt;/code&gt;. Simple as that.&lt;/p&gt;
+<h2 id="what-is-the-problem">What is the problem?</h2>
+<p>The point of the above code is to show that in the function <code class="language-plaintext highlighter-rouge">main</code> it will print correct result, but in the <code class="language-plaintext highlighter-rouge">square</code> it will not.
+Because, the variable <code class="language-plaintext highlighter-rouge">sqr</code> in function <code class="language-plaintext highlighter-rouge">square</code> is stored in <strong>stack memory</strong>, and when function <code class="language-plaintext highlighter-rouge">square</code> ends all the memory it uses becomes available automatically.
+And when function <code class="language-plaintext highlighter-rouge">aimless_func</code> starts, the variable <code class="language-plaintext highlighter-rouge">tmp</code> will override <code class="language-plaintext highlighter-rouge">sqr</code>. Simple as that.</p>
 
-&lt;h2 id=&quot;how-to-fix-it&quot;&gt;How to fix it?&lt;/h2&gt;
-&lt;p&gt;Then how to properly write functions that return pointers? Well, use dynamic memory. In the above example keep &lt;code class=&quot;highlighter-rouge&quot;&gt;sqr&lt;/code&gt; in &lt;strong&gt;heap memory&lt;/strong&gt;:&lt;/p&gt;
+<h2 id="how-to-fix-it">How to fix it?</h2>
+<p>Then how to properly write functions that return pointers? Well, use dynamic memory. In the above example keep <code class="language-plaintext highlighter-rouge">sqr</code> in <strong>heap memory</strong>:</p>
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;square&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sqr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;malloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sqr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;square(): square of %d is %d&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sqr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sqr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span><span class="o">*</span> <span class="nf">square</span><span class="p">(</span><span class="kt">int</span> <span class="n">num</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="o">*</span><span class="n">sqr</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">));</span>
+    <span class="o">*</span><span class="n">sqr</span> <span class="o">=</span> <span class="n">num</span> <span class="o">*</span> <span class="n">num</span><span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"square(): square of %d is %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="o">*</span><span class="n">sqr</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">sqr</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
 
-&lt;p&gt;Also, keep in mind that you can return the address of a function argument, like this:&lt;/p&gt;
+<p>Also, keep in mind that you can return the address of a function argument, like this:</p>
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;get_max&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span><span class="o">*</span> <span class="nf">get_max</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">m</span><span class="p">,</span> <span class="kt">int</span> <span class="o">*</span><span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="n">m</span> <span class="o">&gt;</span> <span class="o">*</span><span class="n">n</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">m</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">n</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
 
-&lt;h2 id=&quot;where-to-use-it&quot;&gt;Where to use it?&lt;/h2&gt;
-&lt;p&gt;What are the use cases of functions that return pointers? So, if you look into &lt;a href=&quot;http://www.zentut.com/c-tutorial/c-linked-list/&quot;&gt;this&lt;/a&gt; implementation of Linked List, you can see some nice examples of functions that return pointers. For example, when you write a function that creates a linked list header, it will return a pointer to the head. Or when you write a function that tries to get the head of a linked list, it will also return a pointer to the head.&lt;/p&gt;
+<h2 id="where-to-use-it">Where to use it?</h2>
+<p>What are the use cases of functions that return pointers? So, if you look into <a href="http://www.zentut.com/c-tutorial/c-linked-list/">this</a> implementation of Linked List, you can see some nice examples of functions that return pointers. For example, when you write a function that creates a linked list header, it will return a pointer to the head. Or when you write a function that tries to get the head of a linked list, it will also return a pointer to the head.</p>
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_node&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;malloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new_node&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Error creating a new node.&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;exit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">node</span><span class="o">*</span> <span class="nf">create</span><span class="p">(</span><span class="kt">int</span> <span class="n">data</span><span class="p">,</span> <span class="n">node</span><span class="o">*</span> <span class="n">next</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">node</span><span class="o">*</span> <span class="n">new_node</span> <span class="o">=</span> <span class="p">(</span><span class="n">node</span><span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">node</span><span class="p">));</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">new_node</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"Error creating a new node.</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+        <span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">new_node</span><span class="o">-&gt;</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">;</span>
+    <span class="n">new_node</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">next</span><span class="p">;</span>
  
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+    <span class="k">return</span> <span class="n">new_node</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
 
-&lt;p&gt;That’s all I have for now. Have a nice day!&lt;/p&gt;</content><author><name></name></author><summary type="html">Hello. It has been a while. In this post I will try to write something interesting about pointers in C programming language. First, let’s have a look at this code:</summary></entry><entry><title type="html">First blog post!</title><link href="http://localhost:4000/blog/post/2018/07/10/first-blog-post.html" rel="alternate" type="text/html" title="First blog post!" /><published>2018-07-10T11:00:00+05:00</published><updated>2018-07-10T11:00:00+05:00</updated><id>http://localhost:4000/blog/post/2018/07/10/first-blog-post</id><content type="html" xml:base="http://localhost:4000/blog/post/2018/07/10/first-blog-post.html">&lt;p&gt;Here it is.. My first post. I will keep it short.&lt;/p&gt;
+<p>That’s all I have for now. Have a nice day!</p>]]></content><author><name></name></author><category term="blog" /><category term="post" /><summary type="html"><![CDATA[Hello. It has been a while. In this post I will try to write something interesting about pointers in C programming language. First, let’s have a look at this code:]]></summary></entry><entry><title type="html">First blog post!</title><link href="http://localhost:4000/blog/post/2018/07/10/first-blog-post.html" rel="alternate" type="text/html" title="First blog post!" /><published>2018-07-10T11:00:00+05:00</published><updated>2018-07-10T11:00:00+05:00</updated><id>http://localhost:4000/blog/post/2018/07/10/first-blog-post</id><content type="html" xml:base="http://localhost:4000/blog/post/2018/07/10/first-blog-post.html"><![CDATA[<p>Here it is.. My first post. I will keep it short.</p>
 
-&lt;p&gt;What am I doing nowadays?:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Learning Flask framework for my side project&lt;/li&gt;
-  &lt;li&gt;Refreshing my linear algebra knowledge&lt;/li&gt;
-  &lt;li&gt;Compete at some platforms like codeforces, hackerrank to stay sharp&lt;/li&gt;
-  &lt;li&gt;Learning Golang, just for fun&lt;/li&gt;
-&lt;/ul&gt;
+<p>What am I doing nowadays?:</p>
+<ul>
+  <li>Learning Flask framework for my side project</li>
+  <li>Refreshing my linear algebra knowledge</li>
+  <li>Compete at some platforms like codeforces, hackerrank to stay sharp</li>
+  <li>Learning Golang, just for fun</li>
+</ul>
 
-&lt;p&gt;What am I planning in the near future?:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Start the ‘side project’&lt;/li&gt;
-  &lt;li&gt;Start learning statistics&lt;/li&gt;
-  &lt;li&gt;Learn Rust, just for fun&lt;/li&gt;
-&lt;/ul&gt;
+<p>What am I planning in the near future?:</p>
+<ul>
+  <li>Start the ‘side project’</li>
+  <li>Start learning statistics</li>
+  <li>Learn Rust, just for fun</li>
+</ul>
 
-&lt;p&gt;I am planning to write at least one post a &lt;del&gt;week&lt;/del&gt; month. And also sorry for my bad grammar.&lt;/p&gt;
+<p>I am planning to write at least one post a <del>week</del> month. And also sorry for my bad grammar.</p>
 
-&lt;p&gt;Cya!&lt;/p&gt;</content><author><name></name></author><summary type="html">Here it is.. My first post. I will keep it short.</summary></entry></feed>
+<p>Cya!</p>]]></content><author><name></name></author><category term="blog" /><category term="post" /><summary type="html"><![CDATA[Here it is.. My first post. I will keep it short.]]></summary></entry></feed>
