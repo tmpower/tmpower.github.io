@@ -16,6 +16,6 @@ I do sometimes web development for "living". Some of my projects are:
 You can find me at social media:
 * [Twitter](https://twitter.com/ezizdurdy)
 * [LinkedIn](https://linkedin.com/in/ezizdurdy)
-* [CV](eziz_durdyyev_cv.pdf)
+* [CV](../eziz_durdyyev_cv.pdf)
 
 I do my best (but not enough) to contribute to open source, like Open vSwitch, here at [Github](https://github.com/tmpower).

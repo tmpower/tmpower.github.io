@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-09-05T18:03:53+05:00</updated><id>http://localhost:4000/</id><title type="html">Simple man’s simple blog</title><subtitle>Here, I write my thoughts about programming, life of a programmer and my journey to this moment.</subtitle><entry><title type="html">Pointers as return values in C</title><link href="http://localhost:4000/blog/post/2018/09/05/pointers-as-return-values-in-C.html" rel="alternate" type="text/html" title="Pointers as return values in C" /><published>2018-09-05T10:00:00+05:00</published><updated>2018-09-05T10:00:00+05:00</updated><id>http://localhost:4000/blog/post/2018/09/05/pointers-as-return-values-in-C</id><content type="html" xml:base="http://localhost:4000/blog/post/2018/09/05/pointers-as-return-values-in-C.html">&lt;p&gt;Hello. It has been a while.&lt;br /&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-03-30T11:19:01+05:00</updated><id>http://localhost:4000/</id><title type="html">Simple man’s simple blog</title><subtitle>Here, I write my thoughts about programming, life of a programmer and my journey to this moment.</subtitle><entry><title type="html">Pointers as return values in C</title><link href="http://localhost:4000/blog/post/2018/09/05/pointers-as-return-values-in-C.html" rel="alternate" type="text/html" title="Pointers as return values in C" /><published>2018-09-05T10:00:00+05:00</published><updated>2018-09-05T10:00:00+05:00</updated><id>http://localhost:4000/blog/post/2018/09/05/pointers-as-return-values-in-C</id><content type="html" xml:base="http://localhost:4000/blog/post/2018/09/05/pointers-as-return-values-in-C.html">&lt;p&gt;Hello. It has been a while.&lt;br /&gt;
 In this post I will try to write something interesting about pointers in C programming language.
 First, let’s have a look at this code:&lt;/p&gt;
 
@@ -75,7 +75,7 @@ And when function &lt;code class=&quot;highlighter-rouge&quot;&gt;aimless_func&l
 &lt;p&gt;What am I doing nowadays?:&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;Learning Flask framework for my side project&lt;/li&gt;
-  &lt;li&gt;Refreshing my linear algebra knowledge ( you know the reason :) )&lt;/li&gt;
+  &lt;li&gt;Refreshing my linear algebra knowledge&lt;/li&gt;
   &lt;li&gt;Compete at some platforms like codeforces, hackerrank to stay sharp&lt;/li&gt;
   &lt;li&gt;Learning Golang, just for fun&lt;/li&gt;
 &lt;/ul&gt;
@@ -83,7 +83,7 @@ And when function &lt;code class=&quot;highlighter-rouge&quot;&gt;aimless_func&l
 &lt;p&gt;What am I planning in the near future?:&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;Start the ‘side project’&lt;/li&gt;
-  &lt;li&gt;Start learning statistics ( you know the reason :) )&lt;/li&gt;
+  &lt;li&gt;Start learning statistics&lt;/li&gt;
   &lt;li&gt;Learn Rust, just for fun&lt;/li&gt;
 &lt;/ul&gt;
 
